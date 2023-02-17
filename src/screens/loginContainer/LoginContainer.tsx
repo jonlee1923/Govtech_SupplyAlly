@@ -1,7 +1,7 @@
 import React from "react";
-import LoginButton from "../loginButton/LoginButton";
-import UsernameField from "../usernameField/UsernameField";
+import Button from "../../components/button/Button";
 import "./loginContainer.css";
+import InputField from "../../components/inputField/InputField"
 
 type Props = {
     login: () => void;
@@ -18,8 +18,8 @@ export default function LoginContainer({
         <div className="flex flex-row mt-20 justify-center">
             <div className="flex flex-col p-4 bg-white justify-evenly w-60">
                 <p className="text-center mb-6">Login</p>
-                <UsernameField setUserName={setUserName} userName={userName} />
-                <LoginButton login={login} />
+                <InputField placeholder={"Enter user name"} setUserName={setUserName} userName={userName} />
+                <Button action={login} text={"Login"} selectStyle={"pri"} destination={"/"}/>
             </div>
         </div>
     );

@@ -1,0 +1,12 @@
+.ally {
+    color: rgba(14, 128, 134, 1);
+}
+
+.text{
+    font-size: 24px;
+    font-family: "IBM Plex Sans";
+}
+
+.navbar{
+    width: 100%
+}

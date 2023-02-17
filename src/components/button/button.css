@@ -1,20 +1,24 @@
 .priButton {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
     height: 48px;
     background: #305367;
     border-radius: 4px;
 }
 
 .priButtonText {
-    width: 41px;
-    height: 20px;
     font-weight: 700;
     font-size: 16px;
-    line-height: 20px;
-    text-align: center;
     color: #ffffff;
 }
+
+.secondaryButton {
+    height: 48px;
+    background: #ffffff;
+    border-radius: 4px;
+}
+
+.secondaryButtonText {
+    font-weight: 700;
+    font-size: 16px;
+    color: #305367;
+}
+

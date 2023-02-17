@@ -1,9 +1,9 @@
 import React from "react";
 import "./button.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, Navigate, useNavigate } from "react-router-dom";
 
 type Props = {
-    action: () => void;
+    action:  () => void;
     text: string;
     selectStyle: string;
     destination: string;
@@ -15,16 +15,16 @@ export default function Button({
     selectStyle,
     destination,
 }: Props) {
+    const navigate = useNavigate();
     return (
-        <button className={`${selectStyle}Button`}>
-            <NavLink to={destination}>
-                <p
-                    className={`${selectStyle}ButtonText font-ibm`}
-                    onClick={action}
-                >
-                    {text}
-                </p>
-            </NavLink>
-        </button>
+        <button
+            className={`w-full ${selectStyle}Button ${selectStyle}ButtonText font-ibm`}
+            onClick={() => {
+                action();
+                navigate(destination);
+            }}
+        >
+            {text}
+         </button>
     );
 }

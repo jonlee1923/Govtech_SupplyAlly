@@ -2,19 +2,19 @@ import React from "react";
 import "./inputField.css";
 
 type Props = {
-    setUserName: React.Dispatch<React.SetStateAction<string>>;
-    userName: string;
+    setField: React.Dispatch<React.SetStateAction<string>>;
+    fieldValue: string;
     placeholder: string;
 };
 
-export default function InputField({ setUserName, userName, placeholder }: Props) {
+export default function InputField({ setField, fieldValue, placeholder }: Props) {
     return (
         <div className="mb-4">
             <input
                 placeholder={placeholder}
                 className="username w-full"
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
+                value={fieldValue}
+                onChange={(e) => setField(e.target.value)}
             />
         </div>
     );

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./navbar.css";
 import IonIcon from "@reacticons/ionicons";
-import { NavLink } from "react-router-dom";
+import { NavLink, Navigate, useNavigate } from "react-router-dom";
 
 type Props = {
     isLoggedIn: boolean;
@@ -13,9 +13,11 @@ export default function Navbar({ isLoggedIn, userName, logout }: Props) {
     let Links = [
         { name: "Track", link: "/track" },
         { name: "Statistics", link: "/statistics" },
-        { name: "Logout", link: "/" },
+        { name: "logout", link: "/" },
     ];
-    let [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false);
+    const [page, setPage] = useState<string>("");
+    const navigate = useNavigate();
 
     return (
         <div className="shadow-md w-full fixed top-0 left-0">
@@ -56,7 +58,7 @@ export default function Navbar({ isLoggedIn, userName, logout }: Props) {
 
                         <div
                             onClick={() => setOpen(!open)}
-                            className="text-3xl absolute right-8 top-3 cursor-pointer sm:hidden"
+                            className="text-3xl absolute right-4 top-3 cursor-pointer sm:hidden"
                         >
                             <IonIcon name={open ? "close" : "menu"}></IonIcon>
                         </div>
@@ -70,18 +72,27 @@ export default function Navbar({ isLoggedIn, userName, logout }: Props) {
                                     key={link.name}
                                     className="md:ml-8 text-xl md:my-0 my-7"
                                 >
-                                    {/* <a
-                                        href={link.link}
-                                        className="text-gray-800 hover:text-gray-400 duration-500"
-                                    >
-                                        {link.name}
-                                    </a> */}
                                     {link.name !== "logout" ? (
-                                        <NavLink to={link.link}>
+                                        <button
+                                            className={`flex w-full`}
+                                            onClick={() => {
+                                                setPage("");
+                                                setOpen(!open);
+                                                navigate(link.link);
+                                            }}
+                                        >
                                             {link.name}
-                                        </NavLink>
+                                        </button>
                                     ) : (
-                                        <button onClick={logout}>
+                                        <button
+                                            className={`flex w-full`}
+                                            onClick={() => {
+                                                logout();
+                                                setOpen(!open);
+                                                setPage(link.name);
+                                                navigate(link.link);
+                                            }}
+                                        >
                                             {link.name}
                                         </button>
                                     )}

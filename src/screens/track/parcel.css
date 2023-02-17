@@ -1,0 +1,7 @@
+.parcelDetails{
+    max-height: 50%;
+}
+
+.checkbox:checked{
+    accent-color: rgba(48, 83, 103, 1);
+}

@@ -36,20 +36,23 @@ export default function TrackParcelScreen({
         //     </div>
         // </div>
         <div className="flex justify-center">
-            <div className="mt-20 flex-col">
-                <div className="flex p-2 bg-priDefault items-center w-80 rounded-t-md">
+            <div className="mt-20 flex-col w-80 sm:w-2/3">
+                {/* removed w-80 here */}
+
+                <div className="flex p-2 bg-priDefault items-center rounded-t-md">
                     <div className="text-4xl">📦</div>
                     <div className="flex-col">
                         <div className="text-xs text-white">Track ID</div>
                         <div className="font-bold text-white">{trackingId}</div>
                     </div>
                 </div>
-                <div className="flex-col px-4 bg-white w-80 rounded-b-md overflow-y-scroll max-h-60">
+                {/* removed w-80 here */}
+                <div className="flex-col px-4 bg-white rounded-b-md overflow-y-scroll max-h-60">
                     {parcelDetails.map((info) => (
                         <ParcelInfoRow info={info} />
                     ))}
                 </div>
-                <div className="flex justify-start my-4">
+                <div className="flex justify-start my-4 sm:my-8">
                     <input
                         type="checkbox"
                         id="myCheckbox"
@@ -59,7 +62,7 @@ export default function TrackParcelScreen({
                         Mark as tracked.
                     </label>
                 </div>
-                <div className="flex flex-col space-y-4 sm:space-y-0 sm:mb-2 sm:flex-row-reverse sm:justify-between">
+                <div className="flex flex-col space-y-4 sm:space-y-0 sm:mb-10 sm:flex-row-reverse sm:justify-between sm:gap-96">
                     <Button
                         action={() => {}}
                         text="Submit"
@@ -68,7 +71,7 @@ export default function TrackParcelScreen({
                     />
                     <Button
                         action={() => {}}
-                        text="back"
+                        text="Back"
                         selectStyle="secondary"
                         destination="back"
                     />

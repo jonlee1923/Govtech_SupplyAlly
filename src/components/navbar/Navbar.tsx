@@ -25,7 +25,7 @@ export default function Navbar({ isLoggedIn, userName, logout }: Props) {
                 className={`${
                     // If logged in shift supplyAlly to the side
                     isLoggedIn
-                        ? "md:flex items-center justify-between bg-white py-4 md:px-10 px-7"
+                        ? "md:flex items-center justify-between bg-white py-4 md:px-10 px-4 sm:px-10"
                         : "flex justify-center bg-white py-4 md:px-10 px-7"
                 }`}
             >

@@ -5,10 +5,10 @@ import Footer from "./components/footer/Footer";
 import Navbar from "./components/navbar/Navbar";
 import LoginContainer from "./screens/loginContainer/LoginContainer";
 import TrackingId from "./screens/track/TrackingId";
-import Statistics from "./screens/statistics/Statistics";
+import Statistics from "./screens/statistics/StatisticsScreen";
 import { ParcelDetail } from "./models/parcelDetail";
+import { StatisticDetail } from "./models/statisticDetail";
 import Home from "./screens/home/Home";
-// import Parcel from "./screens/track/TrackParcelScreen";
 import TrackParcelScreen from "./screens/track/TrackParcelScreen";
 
 export default function App() {
@@ -16,6 +16,11 @@ export default function App() {
     const [userName, setUserName] = useState<string>("");
     const [trackingId, setTrackingId] = useState<string>("");
     const [parcelDetails, setParcelDetails] = useState<ParcelDetail[]>([]);
+    const [trackingStatistics, setTrackingStatistics] = useState<
+        StatisticDetail[]
+    >([]);
+
+    
 
     // Simulate fetching data of parcels
     const fetchParcelDetails = () => {
@@ -55,24 +60,24 @@ export default function App() {
                 details:
                     "Package in transit. Flight containing package has departed",
             },
-            // {
-            //     date: "Monday, 13 Feb",
-            //     time: "2:22 PM",
-            //     details:
-            //         "Package in transit. Flight containing package has departed",
-            // },
-            // {
-            //     date: "Monday, 13 Feb",
-            //     time: "2:22 PM",
-            //     details:
-            //         "Package in transit. Flight containing package has departed",
-            // },
-            // {
-            //     date: "Monday, 13 Feb",
-            //     time: "2:22 PM",
-            //     details:
-            //         "Package in transit. Flight containing package has departed",
-            // },
+            {
+                date: "Monday, 13 Feb",
+                time: "2:22 PM",
+                details:
+                    "Package in transit. Flight containing package has departed",
+            },
+            {
+                date: "Monday, 13 Feb",
+                time: "2:22 PM",
+                details:
+                    "Package in transit. Flight containing package has departed",
+            },
+            {
+                date: "Monday, 13 Feb",
+                time: "2:22 PM",
+                details:
+                    "Package in transit. Flight containing package has departed",
+            },
         ]);
     };
 
@@ -87,8 +92,6 @@ export default function App() {
         console.log("logged out");
         setUserName("");
     };
-
-    // const check
 
     useEffect(() => {}, [loggedIn]);
 

@@ -5,11 +5,13 @@ import Footer from "./components/footer/Footer";
 import Navbar from "./components/navbar/Navbar";
 import LoginContainer from "./screens/loginContainer/LoginContainer";
 import TrackingId from "./screens/track/TrackingId";
-import Statistics from "./screens/statistics/StatisticsScreen";
 import { ParcelDetail } from "./models/parcelDetail";
-import { StatisticDetail } from "./models/statisticDetail";
+import { TrackingRecord } from "./models/trackingRecord";
 import Home from "./screens/home/Home";
 import TrackParcelScreen from "./screens/track/TrackParcelScreen";
+import { DayRecord } from "./models/dayRecord";
+import StatisticsScreen from "./screens/statistics/StatisticsScreen";
+import type { DateTimeFormatOptions } from "intl";
 
 export default function App() {
     const [loggedIn, setLoggedIn] = useState<boolean>(false);
@@ -17,10 +19,8 @@ export default function App() {
     const [trackingId, setTrackingId] = useState<string>("");
     const [parcelDetails, setParcelDetails] = useState<ParcelDetail[]>([]);
     const [trackingStatistics, setTrackingStatistics] = useState<
-        StatisticDetail[]
-    >([]);
-
-    
+        Record<string, TrackingRecord[]>
+    >({});
 
     // Simulate fetching data of parcels
     const fetchParcelDetails = () => {
@@ -81,6 +81,132 @@ export default function App() {
         ]);
     };
 
+    const fetchStatistics = () => {
+        setTrackingStatistics({
+            "18 Feb 2023": [
+                {
+                    trackingId: "11915375000",
+                    date: "18 Feb 2023",
+                    time: "3:00 PM",
+                },
+                {
+                    trackingId: "11915375000",
+                    date: "18 Feb 2023",
+                    time: "3:00 PM",
+                },
+                {
+                    trackingId: "11915375000",
+                    date: "18 Feb 2023",
+                    time: "3:00 PM",
+                },
+                {
+                    trackingId: "11912345600",
+                    date: "18 Feb 2023",
+                    time: "2:50 PM",
+                },
+                {
+                    trackingId: "13567875000",
+                    date: "18 Feb 2023",
+                    time: "2:35 PM",
+                },
+                {
+                    trackingId: "11915398765",
+                    date: "18 Feb 2023",
+                    time: "2:25 PM",
+                },
+                {
+                    trackingId: "13214575000",
+                    date: "18 Feb 2023",
+                    time: "2:15 PM",
+                },
+            ],
+
+            "17 Feb 2023": [
+                {
+                    trackingId: "11915375000",
+                    date: "17 Feb 2023",
+                    time: "3:00 PM",
+                },
+                {
+                    trackingId: "11912345600",
+                    date: "17 Feb 2023",
+                    time: "2:50 PM",
+                },
+                {
+                    trackingId: "13567875000",
+                    date: "17 Feb 2023",
+                    time: "2:35 PM",
+                },
+                {
+                    trackingId: "11915398765",
+                    date: "17 Feb 2023",
+                    time: "2:25 PM",
+                },
+                {
+                    trackingId: "13214575000",
+                    date: "17 Feb 2023",
+                    time: "2:15 PM",
+                },
+            ],
+
+            "16 Feb 2023": [
+                {
+                    trackingId: "11915375000",
+                    date: "16 Feb 2023",
+                    time: "3:00 PM",
+                },
+                {
+                    trackingId: "11912345600",
+                    date: "16 Feb 2023",
+                    time: "2:50 PM",
+                },
+                {
+                    trackingId: "13567875000",
+                    date: "16 Feb 2023",
+                    time: "2:35 PM",
+                },
+                {
+                    trackingId: "11915398765",
+                    date: "16 Feb 2023",
+                    time: "2:25 PM",
+                },
+                {
+                    trackingId: "13214575000",
+                    date: "16 Feb 2023",
+                    time: "2:15 PM",
+                },
+            ],
+
+            "15 Feb 2023": [
+                {
+                    trackingId: "11915375000",
+                    date: "15 Feb 2023",
+                    time: "3:00 PM",
+                },
+                {
+                    trackingId: "11912345600",
+                    date: "15 Feb 2023",
+                    time: "2:50 PM",
+                },
+                {
+                    trackingId: "13567875000",
+                    date: "15 Feb 2023",
+                    time: "2:35 PM",
+                },
+                {
+                    trackingId: "11915398765",
+                    date: "15 Feb 2023",
+                    time: "2:25 PM",
+                },
+                {
+                    trackingId: "13214575000",
+                    date: "15 Feb 2023",
+                    time: "2:15 PM",
+                },
+            ],
+        });
+    };
+
     const login = () => {
         setLoggedIn(true);
         console.log("logged in");
@@ -92,6 +218,47 @@ export default function App() {
         console.log("logged out");
         setUserName("");
     };
+
+    const dateOptions: DateTimeFormatOptions = {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+    };
+    const timeOptions: DateTimeFormatOptions = {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+    };
+    const submitTracked = () => {
+        let currentDateTime: Date = new Date();
+        let trackedDate: string = currentDateTime.toLocaleDateString(
+            "en-GB",
+            dateOptions
+        );
+        let trackedTime: string = currentDateTime.toLocaleTimeString(
+            "en-US",
+            timeOptions
+        );
+
+        let trackedParcel: TrackingRecord = {
+            trackingId: trackingId,
+            date: trackedDate,
+            time: trackedTime,
+        };
+
+        let updatedDayStatistic: TrackingRecord[] = [
+            ...trackingStatistics[trackedDate],
+            trackedParcel,
+        ];
+
+        setTrackingStatistics({
+            ...trackingStatistics,
+            [trackedDate]: updatedDayStatistic,
+        });
+    };
+    useEffect(() => {
+        fetchStatistics();
+    }, []);
 
     useEffect(() => {}, [loggedIn]);
 
@@ -119,13 +286,23 @@ export default function App() {
                         <Route
                             path="/parcel"
                             element={
+                                // TODO: Rename to parceldetailsscreen
                                 <TrackParcelScreen
                                     trackingId={trackingId}
                                     parcelDetails={parcelDetails}
+                                    submitTracked={submitTracked}
                                 />
                             }
                         />
-                        <Route path="/statistics" element={<Statistics />} />
+                        <Route
+                            path="/statistics"
+                            element={
+                                <StatisticsScreen
+                                    statistics={trackingStatistics}
+                                    // fetchStatistics={fetchStatistics}
+                                />
+                            }
+                        />
                     </Routes>
                 ) : (
                     <Routes>

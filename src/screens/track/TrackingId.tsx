@@ -23,6 +23,7 @@ export default function TrackingId({ action, trackingId, setTrackingId}: Props) 
                     text={"Check"}
                     selectStyle={"pri"}
                     destination={"/parcel"}
+                    disabled={false}
                 />
             </div>
         </div>

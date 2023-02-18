@@ -7,6 +7,7 @@ type Props = {
     text: string;
     selectStyle: string;
     destination: string;
+    disabled: boolean;
 };
 
 export default function Button({
@@ -14,14 +15,19 @@ export default function Button({
     text,
     selectStyle,
     destination,
+    disabled
 }: Props) {
     const navigate = useNavigate();
     return (
         <button
-            className={`w-full ${selectStyle}Button ${selectStyle}ButtonText font-ibm`}
+            className={disabled?"w-full mb-4 disabledButton pointer-events-none":`w-full mb-4 ${selectStyle}Button ${selectStyle}ButtonText font-ibm`}
             onClick={() => {
                 action();
-                navigate(destination);
+                if(destination === "-1"){
+                    navigate(-1)
+                } else{
+                    navigate(destination)
+                }
             }}
         >
             {text}

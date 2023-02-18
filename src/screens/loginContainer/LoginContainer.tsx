@@ -19,7 +19,7 @@ export default function LoginContainer({
             <div className="flex flex-col p-10 bg-white justify-evenly w-80">
                 <p className="text-center mb-6">Login</p>
                 <InputField placeholder={"Enter user name"} setField={setUserName} fieldValue={userName} />
-                <Button action={login} text={"Login"} selectStyle={"pri"} destination={"/"}/>
+                <Button action={login} text={"Login"} selectStyle={"pri"} destination={"/"} disabled={false}/>
             </div>
         </div>
     );

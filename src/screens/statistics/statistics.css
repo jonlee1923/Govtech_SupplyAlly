@@ -4,5 +4,20 @@
 
 
 .count{
-    font-size: 56px;
+    font-weight: bold;
+    font-size: 48px;
+    box-sizing: border-box;
+}
+
+.leftArrow{
+    font-size:32px;
+    box-sizing: border-box;
+    padding-top: 10px;
+}
+
+.rightArrow{
+    color: rgba(78, 124, 152, 1);
+    font-size:32px;
+    box-sizing: border-box;
+    padding-top: 10px;
 }

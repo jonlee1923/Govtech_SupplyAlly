@@ -12,11 +12,13 @@ import TrackParcelScreen from "./screens/track/TrackParcelScreen";
 import { DayRecord } from "./models/dayRecord";
 import StatisticsScreen from "./screens/statistics/StatisticsScreen";
 import type { DateTimeFormatOptions } from "intl";
+import { NavLink, Navigate, useNavigate } from "react-router-dom";
 
 export default function App() {
     const [loggedIn, setLoggedIn] = useState<boolean>(false);
     const [userName, setUserName] = useState<string>("");
     const [trackingId, setTrackingId] = useState<string>("");
+    // const [errorMessage, setErrorMessage] = useState<string>("");
     const [parcelDetails, setParcelDetails] = useState<ParcelDetail[]>([]);
     const [trackingStatistics, setTrackingStatistics] = useState<
         Record<string, TrackingRecord[]>
@@ -246,15 +248,25 @@ export default function App() {
             time: trackedTime,
         };
 
-        let updatedDayStatistic: TrackingRecord[] = [
-            ...trackingStatistics[trackedDate],
-            trackedParcel,
-        ];
+        if (trackingStatistics[trackedDate]) {
+            let updatedDayStatistic: TrackingRecord[] = [
+                ...trackingStatistics[trackedDate],
+                trackedParcel,
+            ];
 
-        setTrackingStatistics({
-            ...trackingStatistics,
-            [trackedDate]: updatedDayStatistic,
-        });
+            setTrackingStatistics({
+                ...trackingStatistics,
+                [trackedDate]: updatedDayStatistic,
+            });
+        } else {
+            // trackingStatistics[trackedDate] = [trackedParcel];
+            setTrackingStatistics({
+                ...trackingStatistics,
+                [trackedDate]: [trackedParcel],
+            });
+        }
+
+        console.log(trackingStatistics);
     };
     useEffect(() => {
         fetchStatistics();
@@ -277,7 +289,7 @@ export default function App() {
                             path="/track"
                             element={
                                 <TrackingId
-                                    action={fetchParcelDetails}
+                                    fetchParcelDetails={fetchParcelDetails}
                                     trackingId={trackingId}
                                     setTrackingId={setTrackingId}
                                 />
@@ -310,9 +322,10 @@ export default function App() {
                             path="/"
                             element={
                                 <LoginContainer
-                                    login={login}
+                                    handleLogin={login}
                                     userName={userName}
                                     setUserName={setUserName}
+                                    // errorMessage={errorMessage}
                                 />
                             }
                         />

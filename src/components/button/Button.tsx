@@ -3,15 +3,17 @@ import "./button.css";
 import { NavLink, Navigate, useNavigate } from "react-router-dom";
 
 type Props = {
-    action:  () => void;
+    type: string;
     text: string;
     selectStyle: string;
     destination: string;
+    back: boolean;
     disabled: boolean;
 };
 
 export default function Button({
-    action,
+    back,
+    type,
     text,
     selectStyle,
     destination,
@@ -22,11 +24,8 @@ export default function Button({
         <button
             className={disabled?"w-full mb-4 disabledButton pointer-events-none":`w-full mb-4 ${selectStyle}Button ${selectStyle}ButtonText font-ibm`}
             onClick={() => {
-                action();
-                if(destination === "-1"){
+                if(back){
                     navigate(-1)
-                } else{
-                    navigate(destination)
                 }
             }}
         >

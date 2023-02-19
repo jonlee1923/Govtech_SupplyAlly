@@ -14,6 +14,7 @@ module.exports = {
                 secOnPress: "rgba(227, 242, 251, 1)",
                 secLoading: "rgba(255, 255, 255, 1)",
                 secDisabled: "rgba(161, 168, 174, 1)",
+                navbar: "rgba(65, 70, 75, 1)"
             },
         },
         fontFamily: {

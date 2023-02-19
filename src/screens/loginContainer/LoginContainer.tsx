@@ -1,26 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../../components/button/Button";
 import "./loginContainer.css";
-import InputField from "../../components/inputField/InputField"
+import InputField from "../../components/inputField/InputField";
+import {useNavigate } from "react-router-dom";
 
 type Props = {
-    login: () => void;
+    handleLogin: () => void;
     setUserName: React.Dispatch<React.SetStateAction<string>>;
     userName: string;
 };
 
 export default function LoginContainer({
-    login,
+    handleLogin,
     setUserName,
     userName,
-}: Props) {
+}: 
+Props) {
+    const [errorMessage, setErrorMessage] = useState<string>("");
+    const navigate = useNavigate();
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        if (userName.length === 0) {
+            setErrorMessage("Please fill out the username field");
+            return;
+        }
+        handleLogin();
+        setErrorMessage("")
+        navigate("/")
+    };
+
     return (
-        <div className="flex flex-row mt-40 sm:mt-20 justify-center">
-            <div className="flex flex-col p-10 bg-white justify-evenly w-80">
-                <p className="text-center mb-6">Login</p>
-                <InputField placeholder={"Enter user name"} setField={setUserName} fieldValue={userName} />
-                <Button action={login} text={"Login"} selectStyle={"pri"} destination={"/"} disabled={false}/>
+        <form onSubmit={handleSubmit}>
+            <div className="flex flex-row mt-40 sm:mt-20 justify-center">
+                <div className="flex flex-col p-10 bg-white justify-evenly w-80">
+                    <p className="text-center mb-6">Login</p>
+                    <InputField
+                        placeholder={"Enter user name"}
+                        setField={setUserName}
+                        fieldValue={userName}
+                        error={errorMessage}
+                    />
+                    <Button
+                        type="submit"
+                        text={"Login"}
+                        selectStyle={"pri"}
+                        destination={"/"}
+                        disabled={false}
+                        back={false}
+                    />
+                </div>
             </div>
-        </div>
+        </form>
     );
 }

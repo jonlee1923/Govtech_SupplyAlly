@@ -15,17 +15,35 @@ type Props = {
 
 export default function StatisticsScreen({
     statistics,
-    // fetchStatistics,
-}: Props) {
+}: // fetchStatistics,
+Props) {
     const options: DateTimeFormatOptions = {
         day: "numeric",
         month: "short",
         year: "numeric",
     };
-    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+    const [trackedParcelCount, setTrackedParcelCount] = useState<number>(0);
+    const [lastUpdatedTime, setLastUpdatedTime] = useState<string>("");
 
     useEffect(() => {
-        
+        let count = 0;
+
+        for (const key in statistics) {
+            for (let i = 0; i < statistics[key].length; i++) {
+                count++;
+            }
+        }
+
+        const dates = Object.keys(statistics).sort().reverse();
+        console.log(dates[0])
+        const latestDate = dates[0]
+        const records = statistics[latestDate]
+        const timeStrings = records.map((parcel) => parcel.time)
+        const lastUpdateTime = timeStrings.sort().reverse()[0]
+        // console.log(lastUpdateTime)
+        setLastUpdatedTime(lastUpdateTime);
+        setTrackedParcelCount(count);
     }, [statistics]);
 
     // console.log(
@@ -41,8 +59,8 @@ export default function StatisticsScreen({
                     Statistics
                 </p>
                 <p className="text-black">You tracked</p>
-                <p className="count">211</p>
-                <p>Last tracked at 630pm</p>
+                <p className="count">{trackedParcelCount}</p>
+                <p>Last tracked at {lastUpdatedTime}</p>
                 <div>
                     <Datepicker
                         selectedDate={selectedDate}
@@ -50,7 +68,7 @@ export default function StatisticsScreen({
                     />
                 </div>
                 <div className="bg-white rounded-t-md">
-                    <div className="flex text-start pl-4 font-bold py-4">
+                    <div className="flex text-start pl-4 font-bold py-4 border-b">
                         <p className="w-1/2 ">Tracking ID</p>
                         <p className="w-1/2">Last updated date</p>
                     </div>
@@ -70,17 +88,19 @@ export default function StatisticsScreen({
                                 />
                             ))
                         ) : (
-                            <p>Nothing to show</p>
+                            <div className="flex h-56 items-center justify-center">No Parcels Tracked On This Date</div>
                         )}
                     </div>
                 </div>
 
                 <Button
-                    action={() => {}}
+                    // action={() => {}}
+                    type=""
                     text="Back"
                     selectStyle="pri"
                     destination="-1"
                     disabled={false}
+                    back={true}
                 />
             </div>
         </div>

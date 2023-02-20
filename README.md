@@ -7,7 +7,7 @@
 - For the statistics screen, if a day has no tracked parcels it will simply display "No Parcels Tracked On This Day".
 - The Tracking ID should be 11 characters long.
 # Hosting
-The application has been hosted on Netlify and can be accessed via https://supplyally.netlify.app/
+The application has been hosted on Netlify and can be accessed via https://supplyallyassessment.netlify.app/
 # Getting Started 
 
 Run npm i to install dependencies

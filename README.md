@@ -1,4 +1,4 @@
-#Assumptions
+# Assumptions
 - When a parcel is marked as tracked on the Parcel details screen, the parcel is added to the statistics data and the udpated data will be displayed on the statistics screen.
 - For the mobile statistics screen in figma, the footer is not visible. I assumed this was intended and have added this mobile responsiveness to the footer component.
 - I have made the list of data in the statistics screen and parcel details screen scrollable with the purpose of making the application more user friendly.
@@ -7,7 +7,7 @@
 - For the statistics screen, if a day has no tracked parcels it will simply display "No Parcels Tracked On This Day".
 - The Tracking ID should be 11 characters long.
 # Hosting
-The application has been hosted on Netlify and can be accessed via https://parceltracker.netlify.app/
+The application has been hosted on Netlify and can be accessed via https://supplyally.netlify.app/
 # Getting Started 
 
 Run npm i to install dependencies
@@ -15,7 +15,7 @@ Run npm i to install dependencies
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm run start`
 
 Runs the app in the development mode.\
 
@@ -66,4 +66,4 @@ The components folder contains the following
 - The static data folder contains static data used to simulate the flow of data in the application. It includes static parcel details and static statistics data
 
 
-Finally the app file contains the routes of the application and the login state of the application, as well as the navbar and footer components 
+Finally the app.tsx file contains the routes of the application and the login state of the application, as well as the navbar and footer components 

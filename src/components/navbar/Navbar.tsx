@@ -105,7 +105,7 @@ export default function Navbar({ isLoggedIn, userName, logout }: Props) {
                         <ul
                             data-testid="menu"
                             data-cy="menu"
-                            className={`sm:hidden mt-2 absolute sm:static bg-white z-[-1] left-0 w-full transition-all duration-450 ease-in drop-shadow-md ${
+                            className={`sm:hidden mt-1.5 absolute sm:static bg-white z-[-1] left-0 w-full transition-all duration-450 ease-in drop-shadow-md ${
                                 open ? "top-16" : "top-[-490px]"
                             }`}
                         >

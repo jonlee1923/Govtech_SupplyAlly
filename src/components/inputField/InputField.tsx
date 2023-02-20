@@ -22,6 +22,7 @@ export default function InputField({
                 className={`username w-full focus:outline-none ${
                     error ? "error" : ""
                 }`}
+                data-cy="dynamicInput"
                 value={fieldValue}
                 onChange={(e) => setField(e.target.value)}
             />
@@ -31,7 +32,7 @@ export default function InputField({
                         name="alert-circle-outline"
                         className="text-lg"
                     ></IonIcon>
-                    <p className="text-sm">{error}</p>
+                    <p className="text-sm" data-cy="errorMsg">{error}</p>
                 </div>
             )}
         </div>

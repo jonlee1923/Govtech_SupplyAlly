@@ -11,7 +11,7 @@ type Props = {
     submitTracked: () => void;
 };
 
-export default function TrackParcelScreen({
+export default function ParcelDeatilsScreen({
     parcelDetails,
     trackingId,
     submitTracked,
@@ -28,14 +28,12 @@ export default function TrackParcelScreen({
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         submitTracked();
-        navigate("/");
+        navigate("/home");
     };
     return (
         <form onSubmit={handleSubmit}>
             <div className="flex justify-center">
-                {/* TODO */}
-                {/* maybe change w-80 to full and add margin */}
-                <div className="mt-20 flex-col w-80 sm:w-2/3">
+                <div className="mt-24 sm:mt-32 flex-col w-4/5 sm:w-2/3">
                     <div className="flex p-2 bg-priDefault items-center rounded-t-md">
                         <div className="text-4xl">📦</div>
                         <div className="flex-col">
@@ -50,33 +48,31 @@ export default function TrackParcelScreen({
                             <ParcelInfoRow info={info} />
                         ))}
                     </div>
-                    <div className="flex justify-start my-4 sm:my-8">
+                    <div className="flex justify-start my-4 sm:my-8 items-center">
                         <input
+                            data-testid="checkbox"
                             type="checkbox"
-                            id="myCheckbox"
+                            id="markAsTrackedCheckbox"
                             className="mr-4 w-5 h-5 checkbox"
                             onChange={handleInputChange}
                         />
-                        <label htmlFor="myCheckbox" className="ml-2 font-ibm">
+                        <label
+                            htmlFor="markAsTrackedCheckbox"
+                            className="ml-2 font-ibm"
+                        >
                             Mark as tracked.
                         </label>
                     </div>
                     <div className="flex flex-col space-y-1 sm:space-y-0 mb-8 sm:mb-10 sm:flex-row-reverse sm:justify-between sm:gap-96">
                         <Button
-                            // action={submitTracked}
-                            type="submit"
                             text="Submit"
                             selectStyle="pri"
-                            destination="/"
                             disabled={!isChecked}
                             back={false}
                         />
                         <Button
-                            // action={() => {}}
-                            type=""
                             text="Back"
                             selectStyle="secondary"
-                            destination="-1"
                             disabled={false}
                             back={true}
                         />

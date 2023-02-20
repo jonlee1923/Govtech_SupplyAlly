@@ -9,7 +9,7 @@ type Props = {
     setTrackingId: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export default function TrackingId({
+export default function TrackingIdInput({
     fetchParcelDetails,
     trackingId,
     setTrackingId,
@@ -24,9 +24,9 @@ export default function TrackingId({
             return;
         } 
 
-        if(trackingId.length < 11){
+        if(trackingId.length < 11 || trackingId.length > 11){
             // console.log()
-            setErrorMessage("Please input a valid Tracking ID field");
+            setErrorMessage("Please input a valid Tracking ID field (11 Characters)");
             return;
         }
         
@@ -37,13 +37,13 @@ export default function TrackingId({
 
     return (
         <form onSubmit={handleSubmit}>
-            <div className="flex flex-row mt-40 sm:mt-20 justify-center">
+            <div className="flex flex-row justify-center mt-20 sm:my-24">
                 <div className="flex flex-col p-10 sm:p-4 bg-white justify-evenly w-80 rounded-md font-ibm">
                     <p className="mb-6 font-bold">Track parcel</p>
-                    <p className="text-xs mb-6">
-                        Key in individial package number to track
+                    <p className=" mb-6">
+                        Key in individual package number to track
                     </p>
-                    <label className="text-xs font-bold mb-2">
+                    <label className=" font-bold mb-2">
                         Tracking ID
                     </label>
                     <InputField
@@ -54,10 +54,10 @@ export default function TrackingId({
                     />
                     <Button
                         // action={action}
-                        type="submit"
+                        // type="submit"
                         text={"Check"}
                         selectStyle={"pri"}
-                        destination={"/parcel"}
+                        // destination={"/parcel"}
                         disabled={false}
                         back={false}
                     />

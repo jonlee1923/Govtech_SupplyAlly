@@ -32,9 +32,9 @@ Props) {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div className="flex flex-row mt-40 sm:mt-20 justify-center">
+            <div className="flex flex-row justify-center mt-20 sm:my-24">
                 <div className="flex flex-col p-10 bg-white justify-evenly w-80">
-                    <p className="text-center mb-6">Login</p>
+                    <p className="text-center mb-6 font-ibm font-bold text-2xl">Login</p>
                     <InputField
                         placeholder={"Enter user name"}
                         setField={setUserName}
@@ -42,10 +42,10 @@ Props) {
                         error={errorMessage}
                     />
                     <Button
-                        type="submit"
+                        // type="submit"
                         text={"Login"}
                         selectStyle={"pri"}
-                        destination={"/"}
+                        // destination={"/"}
                         disabled={false}
                         back={false}
                     />

@@ -11,7 +11,7 @@ export default function ParcelInfoRow({ info }: Props) {
             <p className="font-bold">{info.date}</p>
             <div className="flex mt-2">
                 <div className="whitespace-nowrap mr-2">{info.time}</div>
-                <div className="sm:w-1/4">{info.details}</div>
+                <div data-testid="parcelDetails" className="sm:w-1/3">{info.details}</div>
             </div>
         </div>
     );

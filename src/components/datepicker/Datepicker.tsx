@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import IonIcon from "@reacticons/ionicons";
 import type {DateTimeFormatOptions} from 'intl';
 
@@ -27,15 +27,18 @@ const Datepicker = ({ selectedDate, onDateChange }: Props) => {
             <button
                 onClick={handleBackwardClick}
                 className="leftArrow"
+                data-cy="leftArrow"
             >
                 <IonIcon name="chevron-back-outline"></IonIcon>
             </button>
-            <span className="font-bold">
+            <span className="font-bold" data-cy="datePicker">
                 {selectedDate.toLocaleDateString('en-GB', options)}
             </span>
             <button
                 onClick={handleForwardClick}
                 className="rightArrow onClick"
+                data-cy="rightArrow"
+
             >
                 <IonIcon name="chevron-forward-outline"></IonIcon>
             </button>

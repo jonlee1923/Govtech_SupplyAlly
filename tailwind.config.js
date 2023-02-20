@@ -14,20 +14,17 @@ module.exports = {
                 secOnPress: "rgba(227, 242, 251, 1)",
                 secLoading: "rgba(255, 255, 255, 1)",
                 secDisabled: "rgba(161, 168, 174, 1)",
+                allyWordColour: "rgba(14, 128, 134, 1)",
                 navbar: "rgba(65, 70, 75, 1)"
+
             },
         },
         fontFamily: {
             ibm: ["IBM Plex Sans", "cursive"],
         },
-        // screens: {
-        //     xs: "480px",
-        //     ss: "620px",
-        //     sm: "768px",
-        //     md: "1060px",
-        //     lg: "1200px",
-        //     xl: "1700px",
-        // },
+        screens: {
+            sm: "500px",   
+        },
     },
     plugins: [],
 };

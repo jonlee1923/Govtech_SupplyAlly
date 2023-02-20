@@ -4,209 +4,32 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Footer from "./components/footer/Footer";
 import Navbar from "./components/navbar/Navbar";
 import LoginContainer from "./screens/loginContainer/LoginContainer";
-import TrackingId from "./screens/track/TrackingId";
+import TrackingIdInput from "./screens/track/TrackingIdInput";
 import { ParcelDetail } from "./models/parcelDetail";
 import { TrackingRecord } from "./models/trackingRecord";
 import Home from "./screens/home/Home";
-import TrackParcelScreen from "./screens/track/TrackParcelScreen";
+import ParcelDetailsScreen from "./screens/track/ParcelDetailsScreen";
 import { DayRecord } from "./models/dayRecord";
 import StatisticsScreen from "./screens/statistics/StatisticsScreen";
 import type { DateTimeFormatOptions } from "intl";
 import { NavLink, Navigate, useNavigate } from "react-router-dom";
+import { statisticsData, parcelData } from "./staticData/StaticData";
 
 export default function App() {
     const [loggedIn, setLoggedIn] = useState<boolean>(false);
     const [userName, setUserName] = useState<string>("");
     const [trackingId, setTrackingId] = useState<string>("");
-    // const [errorMessage, setErrorMessage] = useState<string>("");
     const [parcelDetails, setParcelDetails] = useState<ParcelDetail[]>([]);
     const [trackingStatistics, setTrackingStatistics] = useState<
         Record<string, TrackingRecord[]>
     >({});
-
     // Simulate fetching data of parcels
     const fetchParcelDetails = () => {
-        setParcelDetails([
-            {
-                date: "Monday, 13 Feb",
-                time: "2:22 PM",
-                details:
-                    "Package in transit. Flight containing package has departed",
-            },
-
-            {
-                date: "Monday, 13 Feb",
-                time: "2:22 PM",
-                details:
-                    "Package in transit. Flight containing package has departed",
-            },
-            {
-                date: "Sunday, 12 Feb",
-                time: "5:09 PM",
-                details: "Parcel left the carrier facility",
-            },
-            {
-                date: "Friday, 10 Feb",
-                time: "8:41 AM",
-                details: "Parcel arrived at a carrier facility",
-            },
-            {
-                date: "Monday, 13 Feb",
-                time: "2:22 PM",
-                details:
-                    "Package in transit. Flight containing package has departed",
-            },
-            {
-                date: "Monday, 13 Feb",
-                time: "2:22 PM",
-                details:
-                    "Package in transit. Flight containing package has departed",
-            },
-            {
-                date: "Monday, 13 Feb",
-                time: "2:22 PM",
-                details:
-                    "Package in transit. Flight containing package has departed",
-            },
-            {
-                date: "Monday, 13 Feb",
-                time: "2:22 PM",
-                details:
-                    "Package in transit. Flight containing package has departed",
-            },
-            {
-                date: "Monday, 13 Feb",
-                time: "2:22 PM",
-                details:
-                    "Package in transit. Flight containing package has departed",
-            },
-        ]);
+        setParcelDetails(parcelData);
     };
 
     const fetchStatistics = () => {
-        setTrackingStatistics({
-            "18 Feb 2023": [
-                {
-                    trackingId: "11915375000",
-                    date: "18 Feb 2023",
-                    time: "3:00 PM",
-                },
-                {
-                    trackingId: "11915375000",
-                    date: "18 Feb 2023",
-                    time: "3:00 PM",
-                },
-                {
-                    trackingId: "11915375000",
-                    date: "18 Feb 2023",
-                    time: "3:00 PM",
-                },
-                {
-                    trackingId: "11912345600",
-                    date: "18 Feb 2023",
-                    time: "2:50 PM",
-                },
-                {
-                    trackingId: "13567875000",
-                    date: "18 Feb 2023",
-                    time: "2:35 PM",
-                },
-                {
-                    trackingId: "11915398765",
-                    date: "18 Feb 2023",
-                    time: "2:25 PM",
-                },
-                {
-                    trackingId: "13214575000",
-                    date: "18 Feb 2023",
-                    time: "2:15 PM",
-                },
-            ],
-
-            "17 Feb 2023": [
-                {
-                    trackingId: "11915375000",
-                    date: "17 Feb 2023",
-                    time: "3:00 PM",
-                },
-                {
-                    trackingId: "11912345600",
-                    date: "17 Feb 2023",
-                    time: "2:50 PM",
-                },
-                {
-                    trackingId: "13567875000",
-                    date: "17 Feb 2023",
-                    time: "2:35 PM",
-                },
-                {
-                    trackingId: "11915398765",
-                    date: "17 Feb 2023",
-                    time: "2:25 PM",
-                },
-                {
-                    trackingId: "13214575000",
-                    date: "17 Feb 2023",
-                    time: "2:15 PM",
-                },
-            ],
-
-            "16 Feb 2023": [
-                {
-                    trackingId: "11915375000",
-                    date: "16 Feb 2023",
-                    time: "3:00 PM",
-                },
-                {
-                    trackingId: "11912345600",
-                    date: "16 Feb 2023",
-                    time: "2:50 PM",
-                },
-                {
-                    trackingId: "13567875000",
-                    date: "16 Feb 2023",
-                    time: "2:35 PM",
-                },
-                {
-                    trackingId: "11915398765",
-                    date: "16 Feb 2023",
-                    time: "2:25 PM",
-                },
-                {
-                    trackingId: "13214575000",
-                    date: "16 Feb 2023",
-                    time: "2:15 PM",
-                },
-            ],
-
-            "15 Feb 2023": [
-                {
-                    trackingId: "11915375000",
-                    date: "15 Feb 2023",
-                    time: "3:00 PM",
-                },
-                {
-                    trackingId: "11912345600",
-                    date: "15 Feb 2023",
-                    time: "2:50 PM",
-                },
-                {
-                    trackingId: "13567875000",
-                    date: "15 Feb 2023",
-                    time: "2:35 PM",
-                },
-                {
-                    trackingId: "11915398765",
-                    date: "15 Feb 2023",
-                    time: "2:25 PM",
-                },
-                {
-                    trackingId: "13214575000",
-                    date: "15 Feb 2023",
-                    time: "2:15 PM",
-                },
-            ],
-        });
+        setTrackingStatistics(statisticsData);
     };
 
     const login = () => {
@@ -259,7 +82,6 @@ export default function App() {
                 [trackedDate]: updatedDayStatistic,
             });
         } else {
-            // trackingStatistics[trackedDate] = [trackedParcel];
             setTrackingStatistics({
                 ...trackingStatistics,
                 [trackedDate]: [trackedParcel],
@@ -282,13 +104,14 @@ export default function App() {
                     userName={userName}
                     logout={logout}
                 />
+                <div className="w-full"></div>
                 {loggedIn ? (
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route
                             path="/track"
                             element={
-                                <TrackingId
+                                <TrackingIdInput
                                     fetchParcelDetails={fetchParcelDetails}
                                     trackingId={trackingId}
                                     setTrackingId={setTrackingId}
@@ -298,8 +121,7 @@ export default function App() {
                         <Route
                             path="/parcel"
                             element={
-                                // TODO: Rename to parceldetailsscreen
-                                <TrackParcelScreen
+                                <ParcelDetailsScreen
                                     trackingId={trackingId}
                                     parcelDetails={parcelDetails}
                                     submitTracked={submitTracked}
@@ -311,10 +133,10 @@ export default function App() {
                             element={
                                 <StatisticsScreen
                                     statistics={trackingStatistics}
-                                    // fetchStatistics={fetchStatistics}
                                 />
                             }
                         />
+                        <Route path="*" element={<Home />} />
                     </Routes>
                 ) : (
                     <Routes>
@@ -325,7 +147,16 @@ export default function App() {
                                     handleLogin={login}
                                     userName={userName}
                                     setUserName={setUserName}
-                                    // errorMessage={errorMessage}
+                                />
+                            }
+                        />
+                        <Route
+                            path="*"
+                            element={
+                                <LoginContainer
+                                    handleLogin={login}
+                                    userName={userName}
+                                    setUserName={setUserName}
                                 />
                             }
                         />

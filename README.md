@@ -19,8 +19,8 @@ In the project directory, you can run:
 
 Runs the app in the development mode.\
 
-### `npm run test`
-
+### `npm test`
+Then enter 'a'
 To run Jest unit tests on the components.
 The components are tested on displaying the correct text and having the right classes depending on the input props passed.
 
@@ -39,7 +39,6 @@ The entire flow of the application is tested to ensure correct functionality of 
 - A parcel marked as tracked will be updated in the statistics page.
 
 ### Folders and files
-
 The components folder contains the following
 - Button folder contains a dynamic button component, that is used for the back, check, login and submit buttons
 
@@ -65,5 +64,6 @@ The components folder contains the following
 
 - The static data folder contains static data used to simulate the flow of data in the application. It includes static parcel details and static statistics data
 
+The components folders also have .test.tsx files that carry out unit testing with Jest as well as the relevant components.
 
 Finally the app.tsx file contains the routes of the application and the login state of the application, as well as the navbar and footer components 
